@@ -1,15 +1,29 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express, NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT || "3000", 10);
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+const ipAddresses = ["192.168.115.130"];
+const allowedOrigins = [
+  ...ipAddresses,
+  "http://192.168.115.131",
+  "http://192.168.115.132",
+];
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+app.use(cors({
+  origin: allowedOrigins,
+}));
+
+ipAddresses.forEach(ipAddress => {
+  app.get("/", (_req: Request, res: Response) => {
+    res.send("Express + TypeScript Server");
+  });   
+
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`[server]: Server is running at http://${ipAddress}:${port}`);
+  });
 });
