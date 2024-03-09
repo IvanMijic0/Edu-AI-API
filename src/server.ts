@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
 
+import { UserRoutes } from "./routes";
+
 dotenv.config();
 
 const app: Express = express();
@@ -20,7 +22,9 @@ app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(cors({
     origin: allowedOrigins,
-  }));
+  }))
+
+  .use('/api', UserRoutes);
 
 ipAddresses.forEach(ipAddress => {
   app.get("/", (_req: Request, res: Response) => {
