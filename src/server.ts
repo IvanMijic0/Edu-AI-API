@@ -37,7 +37,7 @@ app
     origin: allowedOrigins,
   }))
   .use('/api', UserRoutes)
-  .use('/api', AuthRoutes)
+  .use('/api/auth', AuthRoutes)
   .use('/api', TaskRoutes)
   .use('/api', NoteRoutes)
   .use('/api', PresentationRoutes)
