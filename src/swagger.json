@@ -31,6 +31,10 @@
         {
             "name": "presentations",
             "description": "API for notes in the system"
+        },
+        {
+            "name": "chat",
+            "description": "API for chat interaction"
         }
     ],
     "schemes": [
@@ -55,6 +59,73 @@
         }
     ],
     "paths": {
+        "/chat": {
+            "post": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Send a message and get a response from the chat service",
+                "description": "Send a message and get a response from the chat service",
+                "operationId": "chatWithAssistant",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Chat request",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "model": {
+                                    "type": "string",
+                                    "description": "The model to use for chat"
+                                },
+                                "messages": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "role": {
+                                                "type": "string",
+                                                "description": "Role of the message sender"
+                                            },
+                                            "content": {
+                                                "type": "string",
+                                                "description": "Content of the message"
+                                            }
+                                        }
+                                    }
+                                },
+                                "temperature": {
+                                    "type": "number",
+                                    "description": "Temperature parameter for response creativity"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/image/upload": {
             "post": {
                 "tags": [

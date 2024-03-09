@@ -68,7 +68,7 @@ export const loginUser = async (email: string, password: string) => {
             throw new Error("Unauthorized");
         }
 
-        const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+        const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
         return token;
     } catch (error) {
         if (error instanceof Error) {
