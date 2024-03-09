@@ -1,9 +1,13 @@
-import { Slide } from '../models';
+import { Slide, Presentation } from '../models';
 import { SlideData } from '../types';
 
 const createSlide = async (slideData: SlideData) => {
     try {
         const newSlide = new Slide(slideData);
+        await Presentation.findByIdAndUpdate(
+            slideData.presentationId, 
+            { $push: { slides: newSlide._id } },
+            { new: true });
         await newSlide.save();
         return newSlide;
     } catch (error) {
