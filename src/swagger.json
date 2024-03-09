@@ -15,7 +15,7 @@
       {
         "name": "users",
         "description": "API for users in the system"
-        }
+      }
     ],
     "schemes": [
       "http"
@@ -208,5 +208,4 @@
       }
     }
   }
-  
   
