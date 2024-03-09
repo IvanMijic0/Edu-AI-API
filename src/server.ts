@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -14,14 +15,17 @@ const allowedOrigins = [
   "http://192.168.115.132",
 ];
 
-app.use(cors({
-  origin: allowedOrigins,
-}));
+app
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(cors({
+    origin: allowedOrigins,
+  }));
 
 ipAddresses.forEach(ipAddress => {
   app.get("/", (_req: Request, res: Response) => {
     res.send("Express + TypeScript Server");
-  });   
+  });
 
   app.listen(port, "0.0.0.0", () => {
     console.log(`[server]: Server is running at http://${ipAddress}:${port}`);
