@@ -49,6 +49,68 @@ const deleteUserById = async (userId: string) => {
     }
 };
 
+
+const verifyUserEmail = async (userId: string) => {
+    try {
+        return await User.findByIdAndUpdate(
+            userId,
+            {hasConfirmed : true},
+            { new: true }
+        );
+    } catch (error) {
+        throw new Error('Error verifying Email');
+    }
+};
+
+const sendEmail = async (userId: string) => {
+    try{
+        const user = await User.findById(userId);
+
+        const transporter = mailer.createTransport({
+            host: "smtp-relay.brevo.com",
+            port: 587,
+            secure: true,
+            auth: {
+              user: process.env.MAILER_EMAIL,
+              pass: process.env.MAILER_PASSWORD,
+            },
+        });
+
+        const url = process.env.MAIN_URL + "/api/verifyUserEmail/" + userId;
+
+        const mailOptions: MailerData = {
+            from: process.env.MAILER_EMAIL,
+            to: user?.email,
+            subject: "Email Reservation",
+            html: await ejs.renderFile(process.cwd() + './utils/emailTemplate.ejs', { url }),
+        };
+
+        await transporter.sendMail(mailOptions);
+        return
+    } catch(error) {
+        throw new Error('Error sending verification Email');
+    }
+}
+
+export const updateUserImageUrl = async (userId: string, imageUrl: string): Promise<void> => {
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        user.imageUrl = imageUrl;
+
+        await user.save();
+    } catch (error) {
+        if (error instanceof Error) {
+             throw new Error(`Error updating user's image URL: ${error.message}`);
+         }
+         throw error;
+    }
+};
+
 export default {
     createUser,
     getAllUsers,
