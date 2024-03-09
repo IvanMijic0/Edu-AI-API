@@ -1,14 +1,14 @@
 import { User } from '../models';
+import { UserData } from '../types';
 
-import { User } from '../types';
-
-const createUser = async (userData: User) => {
+const createUser = async (userData: UserData) => {
     try {
         const newUser = new User(userData);
         await newUser.save();
         return newUser;
     } catch (error) {
-        throw new Error('Error creating user');
+        if (error instanceof Error)
+        throw new Error(error.message);
     }
 };
 
@@ -28,7 +28,7 @@ const getUserById = async (userId: string) => {
     }
 };
 
-const updateUserById = async (userId: string, userData: any) => {
+const updateUserById = async (userId: string, userData: UserData) => {
     try {
         return await User.findByIdAndUpdate(userId, userData, { new: true });
     } catch (error) {

@@ -6,12 +6,12 @@ type User = {
     password: string;
     gender: string;
     dateOfBirth: string;
-    imageUrl: string;
-    taskIds: string[];
-    notesIds: string[];
-    presentationIds: string[];
-    createdAt: string;
-    updatedAt: string;
+    imageUrl?: string;
+    taskIds?: string[];
+    notesIds?: string[];
+    presentationIds?: string[];
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export default User;

@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
+import mongoose from "mongoose"; // Import Mongoose
 
 import { UserRoutes } from "./routes";
 
@@ -17,13 +18,20 @@ const allowedOrigins = [
   "http://192.168.115.132",
 ];
 
+mongoose.connect(process.env.DB_CONNECTION_STRING || "")
+.then(() => {
+  console.log('Connected to database');
+})
+.catch((error) => {
+  console.error('Error connecting to database:', error);
+});
+
 app
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(cors({
     origin: allowedOrigins,
   }))
-
   .use('/api', UserRoutes);
 
 ipAddresses.forEach(ipAddress => {
