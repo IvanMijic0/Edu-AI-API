@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 
 type User = {
-    _id: ObjectId;
+    _id: string | ObjectId;
     firstName?: string;
     lastName?: string;
     email: string | any;

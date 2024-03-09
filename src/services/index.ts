@@ -4,3 +4,4 @@ export { default as TaskService } from './TaskService';
 export { default as SlideService } from './SlideService';
 export { default as PresentationService } from './PresentationService';
 export { default as AuthService } from './AuthService';
+export { default as ImageService } from './ImageService';

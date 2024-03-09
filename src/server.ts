@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDocument from "./swagger.json";
 
-import { UserRoutes, TaskRoutes, NoteRoutes, SlideRoutes, PresentationRoutes, AuthRoutes } from "./routes";
+import { UserRoutes, TaskRoutes, NoteRoutes, SlideRoutes, PresentationRoutes, AuthRoutes, ImageRoutes } from "./routes";
 
 dotenv.config();
 
@@ -18,7 +18,8 @@ const allowedOrigins = [
   "http://localhost:300/api-docs",
   "http://192.168.115.130",
   "http://192.168.56.1",
-  "http://192.168.115.147"
+  "http://192.168.115.147",
+  "http://192.168.115.107"
 ];
 
 mongoose.connect(process.env.DB_CONNECTION_STRING || "")
@@ -41,7 +42,8 @@ app
   .use('/api', TaskRoutes)
   .use('/api', NoteRoutes)
   .use('/api', PresentationRoutes)
-  .use('/api', SlideRoutes);
+  .use('/api', SlideRoutes)
+  .use('/api/image', ImageRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
