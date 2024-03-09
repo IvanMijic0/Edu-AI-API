@@ -26,6 +26,18 @@
     "produces": [
       "application/json"
     ],
+    "securityDefinitions": {
+        "BearerAuth": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header"
+        }
+      },
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
     "paths": {
       "/users": {
         "post": {
