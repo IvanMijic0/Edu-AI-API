@@ -64,47 +64,19 @@
                 "tags": [
                     "chat"
                 ],
-                "summary": "Send a message and get a response from the chat service",
-                "description": "Send a message and get a response from the chat service",
-                "operationId": "chatWithAssistant",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
+                "summary": "Send a message to the OpenAI chat service",
+                "description": "Send a message to the OpenAI chat service and get a response",
                 "parameters": [
                     {
-                        "name": "body",
+                        "name": "message",
                         "in": "body",
-                        "description": "Chat request",
+                        "description": "The message to send to the chat service",
                         "required": true,
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "model": {
-                                    "type": "string",
-                                    "description": "The model to use for chat"
-                                },
-                                "messages": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "role": {
-                                                "type": "string",
-                                                "description": "Role of the message sender"
-                                            },
-                                            "content": {
-                                                "type": "string",
-                                                "description": "Content of the message"
-                                            }
-                                        }
-                                    }
-                                },
-                                "temperature": {
-                                    "type": "number",
-                                    "description": "Temperature parameter for response creativity"
+                                "message": {
+                                    "type": "string"
                                 }
                             }
                         }
@@ -112,13 +84,27 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response"
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "role": {
+                                    "type": "string",
+                                    "description": "Role of the message sender"
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "description": "Content of the message"
+                                }
+                            },
+                            "required": [
+                                "role",
+                                "content"
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Invalid request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
                     },
                     "500": {
                         "description": "Internal server error"
