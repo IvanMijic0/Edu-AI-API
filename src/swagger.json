@@ -15,6 +15,22 @@
       {
         "name": "users",
         "description": "API for users in the system"
+      },
+      {
+        "name": "notes",
+        "description": "API for notes in the system"
+      },
+      {
+        "name": "tasks",
+        "description": "API for notes in the system"
+      },
+      {
+        "name": "slides",
+        "description": "API for notes in the system"
+      },
+      {
+        "name": "presentations",
+        "description": "API for notes in the system"
       }
     ],
     "schemes": [
@@ -159,7 +175,603 @@
             }
           }
         }
-      }
+      },
+      "/notes": {
+        "post": {
+          "tags": [
+            "notes"
+          ],
+          "summary": "Create a new note",
+          "description": "Create a new note",
+          "operationId": "createNote",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Note object that needs to be added to the system",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Note created"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "notes"
+          ],
+          "summary": "Get all notes",
+          "description": "Get all notes",
+          "operationId": "getAllNotes",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "List of notes",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Note"
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/notes/{noteId}": {
+        "get": {
+          "tags": [
+            "notes"
+          ],
+          "summary": "Get a note by ID",
+          "description": "Get a note by its ID",
+          "operationId": "getNoteById",
+          "parameters": [
+            {
+              "name": "noteId",
+              "in": "path",
+              "description": "ID of the note to retrieve",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Note found",
+              "schema": {
+                "$ref": "#/definitions/Note"
+              }
+            },
+            "404": {
+              "description": "Note not found"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "notes"
+          ],
+          "summary": "Update an existing note",
+          "description": "Update an existing note",
+          "operationId": "updateNoteById",
+          "parameters": [
+            {
+              "name": "noteId",
+              "in": "path",
+              "description": "ID of the note to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Note object with updated data",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Note updated"
+            },
+            "404": {
+              "description": "Note not found"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "notes"
+          ],
+          "summary": "Delete an existing note",
+          "description": "Delete an existing note",
+          "operationId": "deleteNoteById",
+          "parameters": [
+            {
+              "name": "noteId",
+              "in": "path",
+              "description": "ID of the note to delete",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Note deleted"
+            },
+            "404": {
+              "description": "Note not found"
+            }
+          }
+        }
+      },      
+      "/tasks": {
+        "post": {
+          "tags": [
+            "tasks"
+          ],
+          "summary": "Create a new task",
+          "description": "Create a new task",
+          "operationId": "createTask",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Task object that needs to be added to the system",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task created"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "tasks"
+          ],
+          "summary": "Get all tasks",
+          "description": "Get all tasks",
+          "operationId": "getAllTasks",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "List of tasks",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Task"
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/tasks/{taskId}": {
+        "get": {
+          "tags": [
+            "tasks"
+          ],
+          "summary": "Get a task by ID",
+          "description": "Get a task by its ID",
+          "operationId": "getTaskById",
+          "parameters": [
+            {
+              "name": "taskId",
+              "in": "path",
+              "description": "ID of the task to retrieve",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task found",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "404": {
+              "description": "Task not found"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "tasks"
+          ],
+          "summary": "Update an existing task",
+          "description": "Update an existing task",
+          "operationId": "updateTaskById",
+          "parameters": [
+            {
+              "name": "taskId",
+              "in": "path",
+              "description": "ID of the task to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Task object with updated data",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task updated"
+            },
+            "404": {
+              "description": "Task not found"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "tasks"
+          ],
+          "summary": "Delete an existing task",
+          "description": "Delete an existing task",
+          "operationId": "deleteTaskById",
+          "parameters": [
+            {
+              "name": "taskId",
+              "in": "path",
+              "description": "ID of the task to delete",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task deleted"
+            },
+            "404": {
+              "description": "Task not found"
+            }
+          }
+        }
+      },
+      "/slides": {
+        "post": {
+          "tags": [
+            "slides"
+          ],
+          "summary": "Create a new slide",
+          "description": "Create a new slide",
+          "operationId": "createSlide",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Slide object that needs to be added to the system",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Slide"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Slide created"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "slides"
+          ],
+          "summary": "Get all slides",
+          "description": "Get all slides",
+          "operationId": "getAllSlides",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "List of slides",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Slide"
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/slides/{slideId}": {
+        "get": {
+          "tags": [
+            "slides"
+          ],
+          "summary": "Get a slide by ID",
+          "description": "Get a slide by its ID",
+          "operationId": "getSlideById",
+          "parameters": [
+            {
+              "name": "slideId",
+              "in": "path",
+              "description": "ID of the slide to retrieve",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Slide found",
+              "schema": {
+                "$ref": "#/definitions/Slide"
+              }
+            },
+            "404": {
+              "description": "Slide not found"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "slides"
+          ],
+          "summary": "Update an existing slide",
+          "description": "Update an existing slide",
+          "operationId": "updateSlideById",
+          "parameters": [
+            {
+              "name": "slideId",
+              "in": "path",
+              "description": "ID of the slide to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Slide object with updated data",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Slide"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Slide updated"
+            },
+            "404": {
+              "description": "Slide not found"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "slides"
+          ],
+          "summary": "Delete an existing slide",
+          "description": "Delete an existing slide",
+          "operationId": "deleteSlideById",
+          "parameters": [
+            {
+              "name": "slideId",
+              "in": "path",
+              "description": "ID of the slide to delete",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Slide deleted"
+            },
+            "404": {
+              "description": "Slide not found"
+            }
+          }
+        }
+      },
+      "/presentations": {
+        "post": {
+          "tags": [
+            "presentations"
+          ],
+          "summary": "Create a new presentation",
+          "description": "Create a new presentation",
+          "operationId": "createPresentation",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Presentation object that needs to be added to the system",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Presentation"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Presentation created"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "presentations"
+          ],
+          "summary": "Get all presentations",
+          "description": "Get all presentations",
+          "operationId": "getAllPresentations",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "List of presentations",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Presentation"
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/presentations/{presentationId}": {
+        "get": {
+          "tags": [
+            "presentations"
+          ],
+          "summary": "Get a presentation by ID",
+          "description": "Get a presentation by its ID",
+          "operationId": "getPresentationById",
+          "parameters": [
+            {
+              "name": "presentationId",
+              "in": "path",
+              "description": "ID of the presentation to retrieve",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Presentation found",
+              "schema": {
+                "$ref": "#/definitions/Presentation"
+              }
+            },
+            "404": {
+              "description": "Presentation not found"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "presentations"
+          ],
+          "summary": "Update an existing presentation",
+          "description": "Update an existing presentation",
+          "operationId": "updatePresentationById",
+          "parameters": [
+            {
+              "name": "presentationId",
+              "in": "path",
+              "description": "ID of the presentation to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Presentation object with updated data",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Presentation"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Presentation updated"
+            },
+            "404": {
+              "description": "Presentation not found"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "presentations"
+          ],
+          "summary": "Delete an existing presentation",
+          "description": "Delete an existing presentation",
+          "operationId": "deletePresentationById",
+          "parameters": [
+            {
+              "name": "presentationId",
+              "in": "path",
+              "description": "ID of the presentation to delete",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Presentation deleted"
+            },
+            "404": {
+              "description": "Presentation not found"
+            }
+          }
+        }
+      }                 
     },
     "definitions": {
       "User": {
@@ -217,7 +829,76 @@
             "default": "current timestamp"
           }
         }
+      },
+      "Note": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Slide": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "number": {
+            "type": "number"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "Presentation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "slides": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       }
     }
   }
+
   
