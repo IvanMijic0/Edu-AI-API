@@ -1,15 +1,15 @@
-import mongoose, {Schema, Document} from 'mongoose';
+import mongoose from 'mongoose';
 
 const NoteSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String
     },
-    text:{
-        type:String
+    text: {
+        type: String
     },
-    createdAt:{
+    createdAt: {
         type: Date,
-        default : Date()
+        default: Date()
     }
 });
 

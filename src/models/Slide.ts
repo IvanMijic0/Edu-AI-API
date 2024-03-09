@@ -1,4 +1,4 @@
-import mongoose, {Schema, Document} from 'mongoose';
+import mongoose from 'mongoose';
 
 const SlideSchema = new mongoose.Schema({
     title:{

@@ -1,19 +1,19 @@
-import mongoose, {Schema, Document} from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const PresentationSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String
     },
-    prompt:{
-        type:String
+    prompt: {
+        type: String
     },
-    slides:[{
+    slides: [{
         type: Schema.Types.ObjectId,
         ref: 'Slide'
     }],
-    createdAt:{
+    createdAt: {
         type: Date,
-        default : Date()
+        default: Date()
     }
 });
 
