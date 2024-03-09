@@ -126,16 +126,32 @@
                         "description": "The notes to be mixed",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     },
                     {
-                        "name": "summary",
+                        "name": "covertedLecture",
                         "in": "body",
-                        "description": "The summary to be mixed with notes",
+                        "description": "The lecture to be mixed with notes",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 ],

@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDocument from "./swagger.json";
 
-import { UserRoutes, TaskRoutes, NoteRoutes, SlideRoutes, PresentationRoutes, AuthRoutes, ImageRoutes, FileRoutes, OpenAIRoutes } from "./routes";
+import { UserRoutes, NoteRoutes, SlideRoutes, PresentationRoutes, AuthRoutes, ImageRoutes, FileRoutes, OpenAIRoutes, PromptRoutes } from "./routes";
 
 dotenv.config();
 
@@ -39,7 +39,7 @@ app
   }))
   .use('/api', UserRoutes)
   .use('/api/auth', AuthRoutes)
-  .use('/api', TaskRoutes)
+  .use('/api', PromptRoutes)
   .use('/api', NoteRoutes)
   .use('/api', PresentationRoutes)
   .use('/api', SlideRoutes)
