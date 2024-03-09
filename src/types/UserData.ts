@@ -4,9 +4,10 @@ type User = {
     _id: ObjectId;
     firstName?: string;
     lastName?: string;
-    email: string;
-    password: string;
+    email: string | any;
+    password: string | any;
     hasPayed?: boolean | undefined;
+    hasConfirmed?: boolean | undefined;
     dateOfBirth: string;
     imageUrl?: string;
     taskIds?: string[];

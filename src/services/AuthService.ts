@@ -21,6 +21,7 @@ export const registerUser = async (email: string, password: string, firstName: s
         }
 
         const existingUser = await User.findOne({ email });
+        console.log(existingUser);
         if (existingUser) {
             throw new Error("User already exists");
         }

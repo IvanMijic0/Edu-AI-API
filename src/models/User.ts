@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const { Schema } = mongoose;
 
 const user = new Schema({
@@ -10,6 +11,10 @@ const user = new Schema({
   dateOfBirth: String,
   imageUrl: String,
   hasPayed: {
+    type: Boolean,
+    default: false
+  },
+  hasConfirmed: {
     type: Boolean,
     default: false
   },

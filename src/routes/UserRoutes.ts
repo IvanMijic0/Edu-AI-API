@@ -60,4 +60,22 @@ router.delete('/users/:id', async (req: Request, res: Response) => {
     }
 });
 
+router.put('/verifyUserEmail/:id', async (req: Request, res: Response) => {
+    try {
+        const users = await UserService.verifyUserEmail(req.params.id);
+        res.json(users);
+    } catch (error) {
+        error instanceof Error && res.status(500).json({ message: error.message });
+    }
+});
+
+router.post('/sendEmail/:id', async (req: Request, res: Response) => {
+    try {
+        const users = await UserService.verifyUserEmail(req.params.id);
+        res.json(users);
+    } catch (error) {
+        error instanceof Error && res.status(500).json({ message: error.message });
+    }
+});
+
 export default router;
