@@ -1,11 +1,11 @@
-import { Files } from "../models";
+import { Files, Summary } from "../models";
+import OpenAIService from "./OpenAIService";
 
 const saveToMongoDB = async (title: string, text: string) => {
     try {
-        
-
         await Files.create({ title, text });
-
+        const { title: sumTitle, text: sumText } = await OpenAIService.summarizeText(title, text);
+        await Summary.create({ title: sumTitle, text: sumText });
     } catch (error) {
         console.error("Error saving text to MongoDB:", error);
     }
@@ -35,7 +35,7 @@ const deleteFileById = async (fileId: string) => {
     }
 };
 
-export default { 
+export default {
     saveToMongoDB,
     getAllFile,
     getFileById,

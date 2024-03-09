@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ChatResponse, ConvertedLecture, NoteData } from "../types";
+import { ChatResponse, ConvertedLecture, NoteData, SummarizedData } from "../types";
 import { Note, Summary } from "../models";
 
 const sendMessage = async (message: string): Promise<ChatResponse> => {
@@ -61,7 +61,7 @@ const mixNotesSummary = async (notes: NoteData, convertedLecture: ConvertedLectu
     }
 }
 
-const summarizeText = async (title: string, text: string): Promise<ChatResponse> => {
+const summarizeText = async (title: string, text: string): Promise<SummarizedData> => {
     try {
         const requestData = {
             model: "gpt-3.5-turbo",
@@ -83,11 +83,11 @@ const summarizeText = async (title: string, text: string): Promise<ChatResponse>
             }
         });
 
-        return response.data;
+        return { title, text: response.data.choices[0].message.content };
     } catch (error) {
         console.error('Error sending message:', error);
         throw error;
     }
 }
 
-export default { sendMessage, mixNotesSummary };
+export default { sendMessage, mixNotesSummary, summarizeText };

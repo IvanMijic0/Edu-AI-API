@@ -1,5 +1,6 @@
 export type { default as ConvertedLecture } from './ConvertedLecture';
 export type { default as PresentationData } from './PresentationData';
+export type { default as SummarizedData } from './SummarizedData';
 export type { default as ChatRequest } from './ChatRequest';
 export type { default as ChatResponse } from './ChatResponse';
 export type { default as MailerData } from './MailerData';
