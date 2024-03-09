@@ -1,5 +1,4 @@
-import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import crypto from 'crypto';
 
 const randomImageName = (bytes = 32) => {
@@ -46,14 +45,10 @@ const getImageFromS3 = async (imageName: string): Promise<string> => {
         }
     });
 
-    const command = new GetObjectCommand({
-        Bucket: bucketName,
-        Key: imageName
-    });
+    console.log('Getting signed URL for:', imageName);
 
-    const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 48 * 60 * 60 });
 
-    return signedUrl;
+    return imageName;
 };
 
 export default {

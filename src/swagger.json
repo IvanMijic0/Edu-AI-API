@@ -55,6 +55,79 @@
         }
     ],
     "paths": {
+        "/image/upload": {
+            "post": {
+                "tags": [
+                    "images"
+                ],
+                "summary": "Upload an image",
+                "description": "Upload an image",
+                "operationId": "uploadImage",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "The image to upload",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "ID of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Image uploaded"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/image/{userId}": {
+            "get": {
+                "tags": [
+                    "images"
+                ],
+                "summary": "Get user image",
+                "description": "Get user image",
+                "operationId": "getUserImage",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User image found"
+                    },
+                    "404": {
+                        "description": "User image not found"
+                    }
+                }
+            }
+        },
         "/auth/register": {
             "post": {
                 "tags": [

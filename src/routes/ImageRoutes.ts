@@ -1,14 +1,20 @@
 import express, { Request, Response } from 'express';
 import { UploadSingle } from '../middleware';
+
 import { ImageService, UserService } from '../services';
 
 const router = express.Router();
 
 router.post('/upload', UploadSingle, async (req: Request, res: Response) => {
     try {
-        const { userId } = req.body;
+        const { userId } = req.query;
+        if (typeof userId !== 'string') {
+            throw new Error('userId must be a string');
+        }
         const { BUCKET_NAME, BUCKET_REGION, ACCESS_KEY, SECRET_ACCESS_KEY } = process.env;
         
+        console.log('userId:', userId);
+
         if (!BUCKET_NAME || !BUCKET_REGION || !ACCESS_KEY || !SECRET_ACCESS_KEY || !userId) {
             throw new Error('Missing required parameters');
         }
@@ -25,6 +31,7 @@ router.post('/upload', UploadSingle, async (req: Request, res: Response) => {
         error instanceof Error && res.status(500).json({ message: error.message });
     }
 });
+
 
 router.get('/:userId', async (req: Request, res: Response) => {
     try {

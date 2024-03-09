@@ -43,7 +43,7 @@ app
   .use('/api', NoteRoutes)
   .use('/api', PresentationRoutes)
   .use('/api', SlideRoutes)
-  .use('/api', ImageRoutes);
+  .use('/api/image', ImageRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
