@@ -26,4 +26,26 @@ router.post('/upload', UploadSingle, async (req: Request, res: Response) => {
     }
 });
 
+router.get('/:userId', async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params;
+        if (!userId) {
+            throw new Error('User ID is required');
+        }
+
+        const user = await UserService.getUserById(userId);
+        if (!user || !user.imageUrl) {
+            throw new Error('User not found or image URL not available');
+        }
+
+        const signedUrl = await ImageService.getImageFromS3(user.imageUrl);
+
+        res.status(200).json({ signedUrl });
+    } catch (error) {
+        console.error('Error retrieving image from S3:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 export default router;
