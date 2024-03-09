@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import bodyParser from "body-parser"; 
 dotenv.config();
 
 const app: Express = express();
@@ -14,9 +14,12 @@ const allowedOrigins = [
   "http://192.168.115.132",
 ];
 
-app.use(cors({
-  origin: allowedOrigins,
-}));
+app
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(cors({
+    origin: allowedOrigins,
+  }));
 
 ipAddresses.forEach(ipAddress => {
   app.get("/", (_req: Request, res: Response) => {
