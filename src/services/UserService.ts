@@ -14,7 +14,7 @@ const createUser = async (userData: UserData) => {
 
 const getAllUsers = async () => {
     try {
-        return await User.find({});
+        return await User.find({}).select("-password");
     } catch (error) {
         throw new Error('Error retrieving users');
     }
@@ -22,11 +22,12 @@ const getAllUsers = async () => {
 
 const getUserById = async (userId: string) => {
     try {
-        return await User.findById(userId);
+        return await User.findById(userId).select("-password");
     } catch (error) {
         throw new Error('Error retrieving user');
     }
 };
+
 
 const updateUserById = async (userId: string, userData: UserData) => {
     try {
