@@ -3,15 +3,6 @@ import { UserService } from '../services';
 
 const router = express.Router();
 
-router.post('/users', async (req: Request, res: Response) => {
-    try {
-        const newUser = await UserService.createUser(req.body);
-        res.status(201).json(newUser);
-    } catch (error) {
-        error instanceof Error && res.status(500).json({ message: error.message });
-    }
-});
-
 router.get('/users', async (_req: Request, res: Response) => {
     try {
         const users = await UserService.getAllUsers();
@@ -71,7 +62,7 @@ router.put('/verifyUserEmail/:id', async (req: Request, res: Response) => {
 
 router.post('/sendEmail/:id', async (req: Request, res: Response) => {
     try {
-        const users = await UserService.verifyUserEmail(req.params.id);
+        const users = await UserService.sendEmail(req.params.id);
         res.json(users);
     } catch (error) {
         error instanceof Error && res.status(500).json({ message: error.message });

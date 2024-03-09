@@ -69,11 +69,11 @@ const sendEmail = async (userId: string) => {
         const transporter = mailer.createTransport({
             host: "smtp-relay.brevo.com",
             port: 587,
-            secure: true,
+            secure: false,
             auth: {
               user: process.env.MAILER_EMAIL,
               pass: process.env.MAILER_PASSWORD,
-            },
+            }
         });
 
         const url = process.env.MAIN_URL + "/api/verifyUserEmail/" + userId;
@@ -82,15 +82,16 @@ const sendEmail = async (userId: string) => {
             from: process.env.MAILER_EMAIL,
             to: user?.email,
             subject: "Email Reservation",
-            html: await ejs.renderFile(process.cwd() + './utils/emailTemplate.ejs', { url }),
+            html: await ejs.renderFile(process.cwd() + '/src/utils/emailTemplate.ejs', { url }),
         };
 
         await transporter.sendMail(mailOptions);
         return
     } catch(error) {
+        console.log(error);
         throw new Error('Error sending verification Email');
     }
-}
+};
 
 export const updateUserImageUrl = async (userId: string, imageUrl: string): Promise<void> => {
     try {

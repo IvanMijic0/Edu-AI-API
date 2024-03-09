@@ -31,11 +31,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.4.0",
     "mongoose": "^8.2.1",
-<<<<<<< HEAD
     "nodemailer": "^6.9.12",
-=======
     "multer": "^1.4.5-lts.1",
->>>>>>> c155836d1b0cb7aa396e534bf7d637e921298c93
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "sharp": "^0.33.2",
