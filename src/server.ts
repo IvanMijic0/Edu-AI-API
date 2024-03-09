@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDocument from "./swagger.json";
 
-import { UserRoutes } from "./routes";
+import { UserRoutes, TaskRoutes, NoteRoutes, SlideRoutes, PresentationRoutes } from "./routes";
 
 dotenv.config();
 
@@ -33,7 +33,11 @@ app
   .use(cors({
     origin: allowedOrigins,
   }))
-  .use('/api', UserRoutes);
+  .use('/api', UserRoutes)
+  .use('/api', TaskRoutes)
+  .use('/api', NoteRoutes)
+  .use('/api', PresentationRoutes)
+  .use('/api', SlideRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("Express + TypeScript Server");

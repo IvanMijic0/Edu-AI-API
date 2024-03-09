@@ -1,13 +1,10 @@
 import mongoose, {Schema, Document} from 'mongoose';
 
-const TasksSchema = new mongoose.Schema({
-    name:{
+const NoteSchema = new mongoose.Schema({
+    title:{
         type: String
     },
-    prompt:{
-        type:String
-    },
-    answer:{
+    text:{
         type:String
     },
     createdAt:{
@@ -16,4 +13,4 @@ const TasksSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model("Tasks", TasksSchema);
+export default mongoose.model("Note", NoteSchema);
