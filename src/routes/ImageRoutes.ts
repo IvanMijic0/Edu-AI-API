@@ -5,7 +5,7 @@ import { ImageService, UserService } from '../services';
 
 const router = express.Router();
 
-router.post('/upload', UploadSingle, async (req: Request, res: Response) => {
+router.post('/upload', UploadSingle("image"), async (req: Request, res: Response) => {
     try {
         const { userId } = req.query;
         if (typeof userId !== 'string') {

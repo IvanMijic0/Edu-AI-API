@@ -9,7 +9,7 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "192.168.115.130:3000",
+    "host": "localhost:3000",
     "basePath": "/api",
     "tags": [
         {
@@ -252,6 +252,194 @@
                 }
             }
         },
+        "/readPdf": {
+            "post": {
+              "tags": [
+                "file"
+              ],
+              "summary": "Read a PDF file",
+              "description": "Read a PDF file uploaded as form data",
+              "operationId": "readPdf",
+              "consumes": [
+                "multipart/form-data"
+              ],
+              "produces": [
+                "application/json"
+              ],
+              "parameters": [
+                {
+                  "in": "formData",
+                  "name": "title",
+                  "description": "Title of the PDF file",
+                  "required": true,
+                  "type": "string"
+                },
+                {
+                  "in": "formData",
+                  "name": "pdf",
+                  "description": "PDF file to be uploaded",
+                  "required": true,
+                  "type": "file"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "PDF file read successfully",
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "file": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "description": "Internal server error",
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/files": {
+            "get": {
+              "tags": [
+                "files"
+              ],
+              "summary": "Get all files",
+              "description": "Get a list of all files",
+              "operationId": "getAllFiles",
+              "produces": [
+                "application/json"
+              ],
+              "responses": {
+                "200": {
+                  "description": "List of files",
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/File"
+                    }
+                  }
+                },
+                "500": {
+                  "description": "Internal server error",
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/files/{id}": {
+            "get": {
+              "tags": [
+                "files"
+              ],
+              "summary": "Get file by ID",
+              "description": "Get a file by its ID",
+              "operationId": "getFileById",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "description": "ID of the file",
+                  "required": true,
+                  "type": "string"
+                }
+              ],
+              "produces": [
+                "application/json"
+              ],
+              "responses": {
+                "200": {
+                  "description": "File found",
+                  "schema": {
+                    "$ref": "#/definitions/File"
+                  }
+                },
+                "404": {
+                  "description": "File not found"
+                },
+                "500": {
+                  "description": "Internal server error",
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/file/{id}": {
+            "delete": {
+                "tags": [
+                  "files"
+                ],
+                "summary": "Delete file by ID",
+                "description": "Delete a file by its ID",
+                "operationId": "deleteFileById",
+                "parameters": [
+                  {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the file",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "File deleted successfully"
+                  },
+                  "404": {
+                    "description": "File not found"
+                  },
+                  "500": {
+                    "description": "Internal server error",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+        },          
         "/users": {
             "post": {
                 "tags": [
@@ -1071,6 +1259,21 @@
                 },
                 "text": {
                     "type": "string"
+                }
+            }
+        },
+        "Files": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
                 }
             }
         },
