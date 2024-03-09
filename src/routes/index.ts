@@ -1,6 +1,6 @@
 export { default as UserRoutes } from './UserRoutes';
 export { default as NoteRoutes } from './NoteRoutes';
-export { default as TaskRoutes } from './TaskRoutes';
+export { default as PromptRoutes } from './PromptRoutes';
 export { default as SlideRoutes } from './SlideRoutes';
 export { default as FileRoutes } from './FilesRoutes';
 export { default as PresentationRoutes } from './PresentationRoutes';

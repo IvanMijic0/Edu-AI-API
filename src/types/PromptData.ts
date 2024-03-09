@@ -1,4 +1,4 @@
-type Task = {
+type Prompt = {
     _id: string;
     name: string;
     prompt: string;
@@ -6,4 +6,4 @@ type Task = {
     createdAt?: string;
 }
 
-export default Task;
+export default Prompt;

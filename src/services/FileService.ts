@@ -1,8 +1,8 @@
 import { Files } from "../models";
 
-const saveToMongoDB = async (text: string) => {
+const saveToMongoDB = async (title: string, text: string) => {
     try {
-        await Files.create({ text });
+        await Files.create({ title, text });
 
     } catch (error) {
         console.error("Error saving text to MongoDB:", error);

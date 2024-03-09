@@ -8,7 +8,7 @@ const upload = multer();
 
 router.post('/readPdf', upload.single('pdf'), async (req: Request, res: Response) => {
     try {
-        const { title } = req.body;
+        const  title  = req.body.title;
         const pdf = req.file;
 
         const dataBuffer = pdf?.buffer;
@@ -16,7 +16,7 @@ router.post('/readPdf', upload.single('pdf'), async (req: Request, res: Response
 
         if (pdfText?.text === undefined) return
 
-        await FileService.saveToMongoDB(pdfText.text);
+        await FileService.saveToMongoDB(title, pdfText.text);
 
         res.status(200).json({ message: "PDF file read successfully", text: pdfText?.text });
     } catch (error) {
