@@ -14,6 +14,9 @@ const app: Express = express();
 const port = parseInt(process.env.PORT || "3000", 10);
 
 const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:300/api-docs",
+  "http://192.168.115.130",
   "http://192.168.56.1",
   "http://192.168.115.147"
 ];
