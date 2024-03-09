@@ -128,28 +128,28 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "title": {
-                                    "type": "string"
+                                "notes": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "text": {
+                                            "type": "string"
+                                        }
+                                    }
+
                                 },
-                                "text": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "name": "covertedLecture",
-                        "in": "body",
-                        "description": "The lecture to be mixed with notes",
-                        "required": true,
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "title": {
-                                    "type": "string"
-                                },
-                                "text": {
-                                    "type": "string"
+                                "convertedLecture": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "text": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         }
