@@ -1,6 +1,6 @@
 export { default as UserService } from './UserService';
 export { default as NoteService } from './NoteService';
-export { default as PromptService } from './PromptService';
+export { default as SummaryService } from './SummaryService';
 export { default as SlideService } from './SlideService';
 export { default as PresentationService } from './PresentationService';
 export { default as AuthService } from './AuthService';

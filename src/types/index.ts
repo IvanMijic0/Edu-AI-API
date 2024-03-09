@@ -3,7 +3,7 @@ export type { default as PresentationData } from './PresentationData';
 export type { default as ChatRequest } from './ChatRequest';
 export type { default as ChatResponse } from './ChatResponse';
 export type { default as MailerData } from './MailerData';
-export type { default as PromptData } from './PromptData';
+export type { default as SummaryData } from './SummaryData';
 export type { default as SlideData } from './SlideData';
 export type { default as UserData } from './UserData';
 export type { default as NoteData } from './NoteData';

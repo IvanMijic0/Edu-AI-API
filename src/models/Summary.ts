@@ -1,14 +1,11 @@
 import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
 
-const PromptSchema = new mongoose.Schema({
-    name:{
+const SummarySchema = new mongoose.Schema({
+    title:{
         type: String
     },
-    prompt:{
-        type:String
-    },
-    answer:{
+    text:{
         type:String
     },
     createdAt:{
@@ -19,4 +16,4 @@ const PromptSchema = new mongoose.Schema({
 
 });
 
-export default mongoose.model("Prompt", PromptSchema);
+export default mongoose.model("Summary", SummarySchema);
