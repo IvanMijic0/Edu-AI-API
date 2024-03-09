@@ -17,4 +17,16 @@ router.post('/chat', async (req: Request, res: Response) => {
     }
 });
 
+router.post('/mix', async (req: Request, res: Response) => {
+    const { notes, summary } = req.body;
+
+    try {
+        const chatResponse: ChatResponse = await OpenAIService.mixNotesSummary(notes, summary);
+
+        res.json(chatResponse.choices[0].message);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 export default router;

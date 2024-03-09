@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 type Note = {
-    _id: string;
+    _id: ObjectId;
     title: string;
     text: string;
     createdAt?: string;

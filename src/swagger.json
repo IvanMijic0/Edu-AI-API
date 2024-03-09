@@ -112,6 +112,47 @@
                 }
             }
         },
+        "/mix": {
+            "post": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Send notes and a summary to the OpenAI chat service and get a response",
+                "description": "Send notes and a summary to the OpenAI chat service and get a response",
+                "parameters": [
+                    {
+                        "name": "notes",
+                        "in": "body",
+                        "description": "The notes to be mixed",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "summary",
+                        "in": "body",
+                        "description": "The summary to be mixed with notes",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "string",
+                            "description": "Mixed notes with summary"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/image/upload": {
             "post": {
                 "tags": [
