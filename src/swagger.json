@@ -31,6 +31,10 @@
         {
             "name": "presentations",
             "description": "API for notes in the system"
+        },
+        {
+            "name": "chat",
+            "description": "API for chat interaction"
         }
     ],
     "schemes": [
@@ -55,6 +59,59 @@
         }
     ],
     "paths": {
+        "/chat": {
+            "post": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Send a message to the OpenAI chat service",
+                "description": "Send a message to the OpenAI chat service and get a response",
+                "parameters": [
+                    {
+                        "name": "message",
+                        "in": "body",
+                        "description": "The message to send to the chat service",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "role": {
+                                    "type": "string",
+                                    "description": "Role of the message sender"
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "description": "Content of the message"
+                                }
+                            },
+                            "required": [
+                                "role",
+                                "content"
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/image/upload": {
             "post": {
                 "tags": [

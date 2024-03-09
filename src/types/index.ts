@@ -5,3 +5,5 @@ export type { default as SlideData } from './SlideData';
 export type { default as MailerData } from './MailerData';
 export type { default as PresentationData } from './PresentationData';
 export type { default as FileData } from './FileData';
+export type { default as ChatRequest } from './ChatRequest';
+export type { default as ChatResponse } from './ChatResponse';
