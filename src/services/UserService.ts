@@ -8,7 +8,7 @@ const createUser = async (userData: UserData) => {
         return newUser;
     } catch (error) {
         if (error instanceof Error)
-        throw new Error(error.message);
+            throw new Error(error.message);
     }
 };
 
@@ -47,10 +47,30 @@ const deleteUserById = async (userId: string) => {
     }
 };
 
+export const updateUserImageUrl = async (userId: string, imageUrl: string): Promise<void> => {
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        user.imageUrl = imageUrl;
+
+        await user.save();
+    } catch (error) {
+        if (error instanceof Error) {
+             throw new Error(`Error updating user's image URL: ${error.message}`);
+         }
+         throw error;
+    }
+};
+
 export default {
     createUser,
     getAllUsers,
     getUserById,
     updateUserById,
+    updateUserImageUrl,
     deleteUserById,
 };
