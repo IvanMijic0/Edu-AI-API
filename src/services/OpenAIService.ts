@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { ChatResponse, ConvertedLecture, NoteData } from "../types";
-import { Note, Prompt } from "../models";
+import { Note, Summary } from "../models";
 
 const sendMessage = async (message: string): Promise<ChatResponse> => {
     try {
@@ -46,9 +46,9 @@ const mixNotesSummary = async (notes: NoteData, convertedLecture: ConvertedLectu
             }
         });
 
-        const createdNotes = await Note.create({ title: notes.title, text: notes.text });
+        await Note.create({ title: notes.title, text: notes.text });
         
-        await Prompt.create({
+        await Summary.create({
             answer: response.data.choices[0].message.content,
             prompt: convertedLecture.text,
             name: convertedLecture.title
