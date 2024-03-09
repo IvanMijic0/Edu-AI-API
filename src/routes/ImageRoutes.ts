@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import { UploadSingle } from '../middleware';
-import { ImageService } from '../services';
-import { UserService } from '../services';
+import { ImageService, UserService } from '../services';
 
 const router = express.Router();
 
 router.post('/upload', UploadSingle, async (req: Request, res: Response) => {
     try {
-        const { BUCKET_NAME, BUCKET_REGION, ACCESS_KEY, SECRET_ACCESS_KEY, userId } = req.body;
+        const { userId } = req.body;
+        const { BUCKET_NAME, BUCKET_REGION, ACCESS_KEY, SECRET_ACCESS_KEY } = process.env;
         
         if (!BUCKET_NAME || !BUCKET_REGION || !ACCESS_KEY || !SECRET_ACCESS_KEY || !userId) {
             throw new Error('Missing required parameters');
