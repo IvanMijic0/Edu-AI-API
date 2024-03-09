@@ -1,4 +1,5 @@
-import mongoose, {Schema, Document} from 'mongoose';
+import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
 
 const PromptSchema = new mongoose.Schema({
     name:{
@@ -13,7 +14,9 @@ const PromptSchema = new mongoose.Schema({
     createdAt:{
         type: Date,
         default : Date()
-    }
+    },
+    noteId: ObjectId
+
 });
 
 export default mongoose.model("Prompt", PromptSchema);

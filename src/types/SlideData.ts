@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 type Slide = {
-    _id: string;
+    _id: ObjectId;
     presentationId:string,
     title: string;
     number: number;

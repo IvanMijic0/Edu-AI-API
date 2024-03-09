@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 type Presentation = {
-    _id: string;
+    _id: ObjectId;
     name: string;
     slide: string[];
     createdAt?: string;
