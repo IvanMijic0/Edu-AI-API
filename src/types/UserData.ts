@@ -5,13 +5,14 @@ type User = {
     email: string;
     password: string;
     gender: string;
+    hasPayed?: boolean;
     dateOfBirth: string;
     imageUrl?: string;
     taskIds?: string[];
     notesIds?: string[];
     presentationIds?: string[];
-    createdAt?: string;
-    updatedAt?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export default User;

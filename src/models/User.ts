@@ -9,6 +9,10 @@ const user = new Schema({
   password: String,
   dateOfBirth: String,
   imageUrl: String,
+  hasPayed: {
+    type: Boolean,
+    default: false
+  },
   taskIds: [String],
   notesIds: [String],
   presentationIds: [String],

@@ -30,6 +30,8 @@ const getUserById = async (userId: string) => {
 
 const updateUserById = async (userId: string, userData: UserData) => {
     try {
+        userData.updatedAt = new Date();
+
         return await User.findByIdAndUpdate(userId, userData, { new: true });
     } catch (error) {
         throw new Error('Error updating user');
