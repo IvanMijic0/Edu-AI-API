@@ -27,10 +27,25 @@ router.post('/mix', async (req: Request, res: Response) => {
 
     try {
         const chatResponse: ChatResponse = await OpenAIService.mixNotesSummary(notes, convertedLecture);
-        
+
         res.json(chatResponse.choices[0].message);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.post('/summarizeText', async (req, res) => {
+    try {
+        const { title, text } = req.body;
+        if (!title || !text) {
+            return res.status(400).json({ message: "Title and text are required" });
+        }
+
+        const summarizedData = await OpenAIService.summarizeText(title, text);
+        res.status(200).json(summarizedData);
+    } catch (error) {
+        console.error('Error summarizing text:', error);
+        res.status(500).json({ message: "Error summarizing text" });
     }
 });
 
