@@ -28,6 +28,14 @@ const getNoteById = async (noteId: string) => {
     }
 };
 
+const getNoteByUserId = async (userId: string) => {
+    try {
+        return await Note.findById(userId);
+    } catch (error) {
+        throw new Error('Error retrieving Note');
+    }
+};
+
 const updateNoteById = async (noteId: string, noteData: NoteData) => {
     try {
         return await Note.findByIdAndUpdate(noteId, noteData, { new: true });
@@ -50,4 +58,5 @@ export default {
     getNoteById,
     updateNoteById,
     deleteNoteById,
+    getNoteByUserId
 };

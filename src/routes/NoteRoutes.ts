@@ -34,6 +34,19 @@ router.get('/notes/:id', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/note/:id', async (req: Request, res: Response) => {
+    try {
+        const note = await NoteService.getNoteByUserId(req.params.userId);
+        if (!note) {
+            res.status(404).json({ message: 'Note not found' });
+        } else {
+            res.json(note);
+        }
+    } catch (error) {
+        error instanceof Error && res.status(500).json({ message: error.message });
+    }
+});
+
 router.put('/notes/:id', async (req: Request, res: Response) => {
     try {
         const updatedNote = await NoteService.updateNoteById(req.params.id, req.body);

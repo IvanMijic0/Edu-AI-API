@@ -1,7 +1,10 @@
+import { ObjectId } from "mongodb";
+
 type Summary = {
-    _id: string;
+    _id: ObjectId;
     title: string;
     text: string;
+    userId: ObjectId;
     createdAt?: string;
 }
 

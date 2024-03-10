@@ -34,6 +34,19 @@ router.get('/summarys/:id', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/summary/:userId', async (req: Request, res: Response) => {
+    try {
+        const summary = await SummaryService.getSummaryByUserId(req.params.userId);
+        if (!summary) {
+            res.status(404).json({ message: 'Summary not found' });
+        } else {
+            res.json(summary);
+        }
+    } catch (error) {
+        error instanceof Error && res.status(500).json({ message: error.message });
+    }
+});
+
 router.put('/summarys/:id', async (req: Request, res: Response) => {
     try {
         const updatedSummary = await SummaryService.updateSummaryById(req.params.id, req.body);

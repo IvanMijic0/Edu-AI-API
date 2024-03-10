@@ -44,10 +44,19 @@ const deleteSummaryById = async (summaryId: string) => {
     }
 };
 
+const getSummaryByUserId = async (userId: string) => {
+    try {
+        return await Summary.findById(userId);
+    } catch (error) {
+        throw new Error('Error deleting Summary');
+    }
+};
+
 export default {
     createSummary,
     getAllSummarys,
     getSummaryById,
     updateSummaryById,
     deleteSummaryById,
+    getSummaryByUserId
 };

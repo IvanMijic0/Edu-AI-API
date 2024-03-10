@@ -11,27 +11,7 @@ const upload = multer();
 
 router.post('/readPdf', upload.single('pdf'), async (req, res) => {
     try {
-        const authHeader = req.headers['authorization'];
-
-        if (typeof authHeader !== 'string') {
-            return res.status(401).json({ message: "Unauthorized: Missing Authorization header" });
-        }
-
-        const token = authHeader.split(' ')[1]; 
-
-        if (!token) {
-            return res.status(401).json({ message: "Unauthorized: Missing JWT token" });
-        }
-
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET || '');
-
-        console.log(decodedToken);
-
-        let userId;
-        if (typeof decodedToken === 'object' && 'userId' in decodedToken) {
-            userId = decodedToken.userId;
-        }
-
+        const userId = req.body.userId;
         const title = req.body.title;
         const pdf = req.file;
 
