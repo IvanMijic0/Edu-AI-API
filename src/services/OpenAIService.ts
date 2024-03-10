@@ -49,9 +49,8 @@ const mixNotesSummary = async (notes: NoteData, convertedLecture: ConvertedLectu
         await Note.create({ title: notes.title, text: notes.text });
         
         await Summary.create({
-            answer: response.data.choices[0].message.content,
-            prompt: convertedLecture.text,
-            name: convertedLecture.title
+            text: convertedLecture.text,
+            title: convertedLecture.title
         });
 
         return response.data;

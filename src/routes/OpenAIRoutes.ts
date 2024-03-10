@@ -20,11 +20,6 @@ router.post('/chat', async (req: Request, res: Response) => {
 router.post('/mix', async (req: Request, res: Response) => {
     const { notes, convertedLecture } = req.body;
 
-    console.log(req.body);
-
-    console.log('notes', notes);
-    console.log('convertedLecture', convertedLecture);
-
     try {
         const chatResponse: ChatResponse = await OpenAIService.mixNotesSummary(notes, convertedLecture);
 
