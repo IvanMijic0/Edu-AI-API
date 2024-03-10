@@ -2,21 +2,45 @@ import express, { Request, Response } from 'express';
 import { FileService } from '../services';
 import multer from 'multer';
 import PDFParser from 'pdf-parse';
+import jwt from 'jsonwebtoken';
+
 
 const router = express.Router();
 const upload = multer();
 
-router.post('/readPdf', upload.single('pdf'), async (req: Request, res: Response) => {
+
+router.post('/readPdf', upload.single('pdf'), async (req, res) => {
     try {
-        const  title  = req.body.title;
+        const authHeader = req.headers['authorization'];
+
+        if (typeof authHeader !== 'string') {
+            return res.status(401).json({ message: "Unauthorized: Missing Authorization header" });
+        }
+
+        const token = authHeader.split(' ')[1]; 
+
+        if (!token) {
+            return res.status(401).json({ message: "Unauthorized: Missing JWT token" });
+        }
+
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET || '');
+
+        console.log(decodedToken);
+
+        let userId;
+        if (typeof decodedToken === 'object' && 'userId' in decodedToken) {
+            userId = decodedToken.userId;
+        }
+
+        const title = req.body.title;
         const pdf = req.file;
 
         const dataBuffer = pdf?.buffer;
         const pdfText = dataBuffer && await PDFParser(dataBuffer);
 
-        if (pdfText?.text === undefined) return
+        if (pdfText?.text === undefined) return;
 
-        await FileService.saveToMongoDB(title, pdfText.text);
+        await FileService.saveToMongoDB(title, pdfText.text, userId);
 
         res.status(200).json({ message: "PDF file read successfully", text: pdfText?.text });
     } catch (error) {
@@ -24,6 +48,8 @@ router.post('/readPdf', upload.single('pdf'), async (req: Request, res: Response
         res.status(500).json({ message: "Error reading PDF file" });
     }
 });
+
+
 
 router.get('/files', async (_req: Request, res: Response) => {
     try {

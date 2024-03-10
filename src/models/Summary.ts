@@ -12,6 +12,7 @@ const SummarySchema = new mongoose.Schema({
         type: Date,
         default : Date()
     },
+    userId: ObjectId,
     noteId: ObjectId
 
 });

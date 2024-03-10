@@ -1,11 +1,11 @@
 import { Files, Summary } from "../models";
 import OpenAIService from "./OpenAIService";
 
-const saveToMongoDB = async (title: string, text: string) => {
+const saveToMongoDB = async (title: string, text: string, userId: string) => {
     try {
         await Files.create({ title, text });
         const { title: sumTitle, text: sumText } = await OpenAIService.summarizeText(title, text);
-        await Summary.create({ title: sumTitle, text: sumText });
+        await Summary.create({ title: sumTitle, text: sumText, userId });
     } catch (error) {
         console.error("Error saving text to MongoDB:", error);
     }
