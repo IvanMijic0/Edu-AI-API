@@ -34,19 +34,6 @@ To run the project locally, follow the steps below:
    ```
 4. Set up environment variables. Create a `.env` file and add the following variables:
    ```
-    PORT=3000
-    DB_CONNECTION_STRING=mongodb+srv://ivanmijic159951:GSePeh24LCoJe7fW@studentaitoolkit.wtmwuse.mongodb.net/?retryWrites=true&w=majority&appName=StudentAIToolkit
-    JWT_SECRET=asdaibdwiaqy3184y14124719ashidajshasuhsdgdisdiudw98eq9871274124719yahdijsaihsi
-    BUCKET_NAME=student-ai-toolkit
-    BUCKET_REGION=eu-north-1
-    ACCESS_KEY=AKIATCKAMOWIC7LWW2MC
-    SECRET_ACCESS_KEY=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
-    OPEN_API_KEY=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
-    OPEN_API_ORGANIZATION_ID=org-W2JU9SDONGlsi8vVkFyipa2i
-    MAIN_URL=http://localhost:3000
-    MAILER_EMAIL=adnan.dzindo1507@gmail.com
-    MAILER_PASSWORD=aK3bVp9TyqIz8mPR
-
    ```
 5. Start the server:
    ```
