@@ -55,9 +55,6 @@ To run the project locally, follow the steps below:
    ```
 4. Set up environment variables. Create a `.env.local` file and add the following variables:
    ```
-    NEXT_PUBLIC_BACKEND_API="http://localhost:3333/api"
-    NEXT_PUBLIC_BACKEND_AUTH="http://localhost:3333/api/auth"
-    NEXT_PUBLIC_SECRET_REDUX_KEY="LethalCompany123"
    ```
 5. Start the frontend application:
    ```
